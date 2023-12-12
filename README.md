@@ -118,7 +118,13 @@ The School Library Management App is designed to streamline the process of manag
 
 <!-- AUTHOR -->
 
-## 👤 Author <a name="author"></a>
+## 👤 Authors <a name="author"></a>
+
+👤 **SAMUEL LEMMA**
+
+- GitHub: [samuel_lemma](https://github.com/sam2if)
+- Twitter: [samuel_lemma](https://twitter.com/samuellemma3733)
+- LinkedIn: [samuel_lemma](https://www.linkedin.com/in/s-lemma/)
 
 👤 Thierry Noumbuh
 
