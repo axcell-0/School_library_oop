@@ -179,7 +179,7 @@ class App
     when 6
       list_rentals
     else
-      puts 'Invalid option. Please choose a valid option.'
+      puts 'Thank you for using the app.'
     end
   end
 end
