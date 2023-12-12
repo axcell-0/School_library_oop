@@ -1,1 +1,17 @@
-[ ]
+[
+  {
+    "type": "student",
+    "id": 981,
+    "name": "thierry",
+    "age": 20,
+    "parent_permission": true,
+    "classroom": null
+  },
+  {
+    "type": "teacher",
+    "id": 457,
+    "name": "front",
+    "age": 50,
+    "specialization": "food"
+  }
+]

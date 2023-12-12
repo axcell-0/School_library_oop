@@ -3,6 +3,7 @@ require_relative 'nameable'
 class Person < Nameable
   attr_accessor :name, :age, :rentals, :parent_permission
   attr_reader :id
+
   def initialize(name: 'Unknown', age: 0, parent_permission: true, id: nil)
     super()
     @id = id || generate_id
@@ -11,15 +12,19 @@ class Person < Nameable
     @parent_permission = parent_permission
     @rentals = []
   end
+
   def can_use_services?
     of_age? || @parent_permission
   end
+
   def correct_name
     @name
   end
+
   def add_rental(rental)
     rentals << rental
   end
+
   def to_json(*args)
     {
       id: @id,
