@@ -24,7 +24,6 @@
   - [🙏 Acknowledgments ](#-acknowledgments-)
   - [📝 License ](#license)
 
-
 <!-- PROJECT DESCRIPTION -->
 
 # 📖 School Library <a name="about-project"></a>
