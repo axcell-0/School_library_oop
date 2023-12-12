@@ -1,4 +1,4 @@
-class CapitalizeDecorator < Decorator\r
+class CapitalizeDecorator < Decorator
   def correct_name
     @nameable.correct_name.upcase
   end

@@ -1,4 +1,4 @@
-require_relative 'app'\r
+require_relative 'app'
 
 class Main
   def initialize

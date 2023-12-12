@@ -1,4 +1,4 @@
-class Book\r
+class Book
   attr_accessor :title, :author, :rentals, :id
 
   def initialize(title, author, id: Random.rand(1...1000))
