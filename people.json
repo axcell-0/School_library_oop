@@ -1,25 +1,16 @@
 [
   {
-    "type": "student",
-    "id": 921,
-    "name": "7",
-    "age": 0,
-    "parent_permission": false,
-    "classroom": null
-  },
-  {
-    "type": "student",
-    "id": 615,
-    "name": "thierry",
-    "age": 20,
-    "parent_permission": true,
-    "classroom": null
+    "type": "teacher",
+    "person.id": 793,
+    "name": "teach",
+    "age": 50,
+    "specialization": "cook"
   },
   {
     "type": "teacher",
-    "id": 543,
-    "name": "ruby",
-    "age": 40,
-    "specialization": "good"
+    "person.id": 259,
+    "name": "good",
+    "age": 70,
+    "specialization": "rock"
   }
 ]

@@ -6,6 +6,7 @@ require_relative 'rental'
 require_relative 'classroom'
 require 'json'
 
+
 class App
   def initialize
     @books = []
@@ -16,6 +17,7 @@ class App
 
   def load_data_if_needed
     return if @loaded_data
+
 
     load_books_from_json
     @loaded_data = true
@@ -117,11 +119,32 @@ class App
     puts '----- People loaded successfully -----'
     if File.exist?('people.json')
       begin
-        people_data = load_people_data
+        people_json = File.read('people.json')
+        people_data = JSON.parse(people_json)
 
-        @people = build_people(people_data).compact
-
-        display_people_info(@people)
+        @people = people_data.map.with_index(1) do |person_data, index|
+          if person_data['type'] == 'student'
+            Student.new(
+              person_data['name'],
+              person_data['age'],
+              parent_permission: person_data['parent_permission'],
+              id: person_data['id']
+            )
+          elsif person_data['type'] == 'teacher'
+            Teacher.new(
+              name: person_data['name'],
+              age: person_data['age'],
+              specialization: person_data['specialization'],
+              id: person_data['id']
+            )
+          else
+            puts "Unknown person type: #{person_data['type']}"
+            nil
+          end.tap do |person|
+            type = person.is_a?(Student) ? 'Student' : 'Teacher'
+            puts "#{index} - [#{type}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+          end
+        end.compact
       rescue JSON::ParserError => e
         puts "Error parsing JSON data: #{e.message}"
       rescue StandardError => e
@@ -129,67 +152,6 @@ class App
       end
     else
       puts 'No person data found in people.json'
-    end
-  end
-
-  def load_people_data
-    people_json = File.read('people.json')
-    JSON.parse(people_json)
-  end
-
-  def build_people(people_data)
-    built_people = {}
-    people_data.map do |person_data|
-      build_person_from_data(person_data, built_people)
-    end.compact
-  end
-
-  def build_person_from_data(person_data, built_people)
-    person_id = person_data['id']
-    return built_people[person_id] if built_people.key?(person_id)
-
-    case person_data['type']
-    when 'student'
-      built_people[person_id] = build_student(person_data)
-    when 'teacher'
-      built_people[person_id] = build_teacher(person_data)
-    else
-      puts "Unknown person type: #{person_data['type']}"
-      nil
-    end
-  end
-
-  def build_student(person_data, index)
-    Student.new(
-      person_data['name'],
-      person_data['age'],
-      parent_permission: person_data['parent_permission'],
-      id: person_data['id']
-    ).tap do |student|
-      display_person_info(student, index)
-    end
-  end
-
-  def build_teacher(person_data, index)
-    Teacher.new(
-      name: person_data['name'],
-      age: person_data['age'],
-      specialization: person_data['specialization'],
-      id: person_data['id']
-    ).tap do |teacher|
-      display_person_info(teacher, index)
-    end
-  end
-
-  def display_person_info(person, index)
-    type = person.is_a?(Student) ? 'Student' : 'Teacher'
-    puts "#{index} - [#{type}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-    person
-  end
-
-  def display_people_info(people)
-    people.each.with_index(1) do |person, index|
-      display_person_info(person, index)
     end
   end
 
@@ -223,46 +185,42 @@ class App
 
   def display_rentals_by_person_id
     if File.exist?('rentals.json')
-      rentals_data = load_rentals_data
+      rentals_json = File.read('rentals.json')
+      rentals_data = JSON.parse(rentals_json)
       list_people
-
       puts "Enter a person's ID to see if they have rented books:"
       id = gets.chomp.to_i
 
-      found_rentals = find_rentals_by_person_id(rentals_data, id)
-      found_name = find_person_name_by_id(id)
+      found_rentals = []
+      found_name = nil
 
-      display_rentals_info(found_name, found_rentals)
+      @people.each do |person|
+        if person.id == id
+          found_name = person.name
+          break
+        end
+      end
+
+      rentals_data.each do |rental_data|
+        person_id = rental_data['person']['id']
+        next unless person_id == id
+
+        book_title = rental_data['book']['title']
+        book_author = rental_data['book']['author']
+        rental_date = rental_data['date']
+        found_rentals << { title: book_title, author: book_author, date: rental_date }
+      end
+
+      if found_rentals.empty?
+        puts "No rentals found for person ID #{id}."
+      else
+        puts "#{found_name}'s rented books:"
+        found_rentals.each do |rental|
+          puts "Date: #{rental[:date]}, Book '#{rental[:title]}' by #{rental[:author]}"
+        end
+      end
     else
       puts 'No rental data found in rentals.json'
-    end
-  end
-
-  def load_rentals_data
-    rentals_json = File.read('rentals.json')
-    JSON.parse(rentals_json)
-  end
-
-  def find_rentals_by_person_id(rentals_data, person_id)
-    rentals_data.select { |rental_data| rental_data['person']['id'] == person_id }
-  end
-
-  def find_person_name_by_id(person_id)
-    found_person = @people.find { |person| person.id == person_id }
-    found_person&.name
-  end
-
-  def display_rentals_info(person_name, rentals)
-    if rentals.empty?
-      puts "No rentals found for person ID #{id}."
-    else
-      puts "#{person_name}'s rented books:"
-      rentals.each do |rental|
-        book_title = rental['book']['title']
-        book_author = rental['book']['author']
-        rental_date = rental['date']
-        puts "Date: #{rental_date}, Book '#{book_title}' by #{book_author}"
-      end
     end
   end
 
@@ -352,6 +310,7 @@ class App
     end
   end
 
+
   private
 
   def display_menu
@@ -385,3 +344,4 @@ class App
     end
   end
 end
+7
