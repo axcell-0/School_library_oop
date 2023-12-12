@@ -138,17 +138,21 @@ class App
   end
 
   def build_people(people_data)
-    people_data.map.with_index(1) do |person_data, index|
-      build_person_from_data(person_data, index)
-    end
+    built_people = {}
+    people_data.map do |person_data|
+      build_person_from_data(person_data, built_people)
+    end.compact
   end
 
-  def build_person_from_data(person_data, index)
+  def build_person_from_data(person_data, built_people)
+    person_id = person_data['id']
+    return built_people[person_id] if built_people.key?(person_id)
+
     case person_data['type']
     when 'student'
-      build_student(person_data, index)
+      built_people[person_id] = build_student(person_data)
     when 'teacher'
-      build_teacher(person_data, index)
+      built_people[person_id] = build_teacher(person_data)
     else
       puts "Unknown person type: #{person_data['type']}"
       nil
