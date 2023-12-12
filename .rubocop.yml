@@ -10,21 +10,15 @@ AllCops:
 Layout/LineLength:
   Max: 120
 Metrics/MethodLength:
-  Enabled: false
+  Max: 20
 Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:
-  Enabled: false
+  Max: 150
 Metrics/BlockLength:
-  Exclude:
-      - 'spec/**/*'
+  IgnoredMethods: ['describe']
   Max: 30
-  AllowedMethods:
-    - 'your_method_name'
-Metrics/CyclomaticComplexity:
-  Enabled: false
-Metrics/PerceivedComplexity:
-  Enabled: false
+
 
 Style/Documentation:
   Enabled: false
@@ -38,8 +32,6 @@ Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
-Style/EndOfLine:
-  EnforcedStyle: crlf  
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
@@ -58,7 +50,3 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
-Layout/EndOfLine:
-  EnforcedStyle: crlf
-  Enabled: true
-  AutoCorrect: true
