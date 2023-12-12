@@ -1,4 +1,4 @@
-class Student < Person
+class Student < Person\r
   attr_accessor :classroom
 
   def initialize(name, age, id:, parent_permission: true, classroom: nil)

@@ -1,4 +1,4 @@
-class Decorator < Nameable
+class Decorator < Nameable\r
   def initialize(nameable)
     super()
     @nameable = nameable

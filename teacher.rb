@@ -1,4 +1,4 @@
-class Teacher < Person
+class Teacher < Person\r
   attr_accessor :specialization
 
   def initialize(name:, age:, id:, specialization: 'Unknown', parent_permission: true)

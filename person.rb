@@ -1,4 +1,4 @@
-require 'securerandom'
+require 'securerandom'\r
 require_relative 'nameable'
 class Person < Nameable
   attr_accessor :name, :age, :rentals, :parent_permission
