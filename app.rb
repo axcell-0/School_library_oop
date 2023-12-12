@@ -6,7 +6,6 @@ require_relative 'rental'
 require_relative 'classroom'
 require 'json'
 
-
 class App
   def initialize
     @books = []
@@ -17,7 +16,6 @@ class App
 
   def load_data_if_needed
     return if @loaded_data
-
 
     load_books_from_json
     @loaded_data = true
@@ -349,7 +347,6 @@ class App
       break if choice == 7
     end
   end
-
 
   private
 
