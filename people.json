@@ -1,16 +1,17 @@
 [
   {
-    "type": "teacher",
-    "person.id": 793,
-    "name": "teach",
-    "age": 50,
-    "specialization": "cook"
+    "type": "student",
+    "id": 125,
+    "name": "thierry",
+    "age": 20,
+    "parent_permission": true,
+    "classroom": null
   },
   {
     "type": "teacher",
-    "person.id": 259,
-    "name": "good",
-    "age": 70,
-    "specialization": "rock"
+    "id": 915,
+    "name": "akisa",
+    "age": 40,
+    "specialization": "english"
   }
 ]

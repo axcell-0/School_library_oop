@@ -2,20 +2,20 @@
   {
     "date": "12-12-2023",
     "book": {
-      "title": "true",
-      "author": "waits",
+      "title": "true love waits",
+      "author": "romeo",
       "rentals": [
-        "\"#<Rental:0x000002b2ce0f13a0>\""
+        "\"#<Rental:0x0000018abb082630>\""
       ]
     },
     "person": {
-      "id": 981,
-      "name": "thierry",
-      "age": 20,
+      "id": 915,
+      "name": "akisa",
+      "age": 40,
       "parent_permission": true,
-      "type": "Student",
+      "type": "Teacher",
       "rentals": [
-        "\"#<Rental:0x000002b2ce0f13a0>\""
+        "\"#<Rental:0x0000018abb082630>\""
       ]
     }
   }
