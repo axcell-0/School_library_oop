@@ -2,12 +2,12 @@ require 'securerandom'
 require_relative 'nameable'
 
 class Person < Nameable
-  attr_accessor :name, :age, :rentals
+  attr_accessor :name, :age, :rentals, :parent_permission
   attr_reader :id
 
-  def initialize(name: 'Unknown', age: 0, parent_permission: true)
+  def initialize(name: 'Unknown', age: 0, parent_permission: true, id: nil)
     super()
-    @id = generate_id
+    @id = id || generate_id
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -22,9 +22,17 @@ class Person < Nameable
     @name
   end
 
-  # Este método debe ser público
   def add_rental(rental)
     rentals << rental
+  end
+
+  def to_json(*args)
+    {
+      id: @id,
+      name: @name,
+      age: @age,
+      parent_permission: @parent_permission
+    }.to_json(*args)
   end
 
   private

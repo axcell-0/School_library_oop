@@ -1,0 +1,22 @@
+[
+  {
+    "date": "12-12-2023",
+    "book": {
+      "title": "true love waits",
+      "author": "romeo",
+      "rentals": [
+        "\"#<Rental:0x0000018abb082630>\""
+      ]
+    },
+    "person": {
+      "id": 915,
+      "name": "akisa",
+      "age": 40,
+      "parent_permission": true,
+      "type": "Teacher",
+      "rentals": [
+        "\"#<Rental:0x0000018abb082630>\""
+      ]
+    }
+  }
+]

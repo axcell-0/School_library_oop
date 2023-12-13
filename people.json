@@ -1,0 +1,17 @@
+[
+  {
+    "type": "student",
+    "id": 125,
+    "name": "thierry",
+    "age": 20,
+    "parent_permission": true,
+    "classroom": null
+  },
+  {
+    "type": "teacher",
+    "id": 915,
+    "name": "akisa",
+    "age": 40,
+    "specialization": "english"
+  }
+]

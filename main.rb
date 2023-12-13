@@ -6,6 +6,7 @@ class Main
   end
 
   def run
+    @app.load_data_if_needed
     @app.run
   end
 end
