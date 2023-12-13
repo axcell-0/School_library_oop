@@ -37,9 +37,7 @@ Style/AndOr:
 Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
-Style/EndOfLine:
-  EnforcedStyle: crlf  
+  EnforcedStyle: never 
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
@@ -58,7 +56,3 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
-Layout/EndOfLine:
-  EnforcedStyle: crlf
-  Enabled: true
-  AutoCorrect: true
